@@ -59,7 +59,9 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("https://dailybuzzs.com/wp-json/wp/v2/posts/");
+  const res = await fetch(
+    "https://dailybuzzs.com/wp-json/wp/v2/posts?_embed&per_page=100"
+  );
   const posts = await res.json();
   const paths = posts.map((post) => ({
     params: { slug: post.slug },
