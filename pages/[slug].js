@@ -1,7 +1,10 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 // import { useRouter } from "next/router";
 
-export default function Post({ slug }) {
+export default function Post({ post }) {
+  const router = useRouter();
   // const { asPath } = useRouter();
   // const origin =
   //   typeof window !== "undefined" && window.location.origin
@@ -10,10 +13,19 @@ export default function Post({ slug }) {
 
   // const URL = `${origin}`;
 
+  useEffect(() => {
+    router.push(`https://dailybuzzs.com/${post?.slug}`);
+  }, [post?.slug]);
+
   return (
     <div>
       <Head>
-        {/* <meta property="og:url" content={`${URL}/${asPath}`} /> */}
+        <title>{post?.title.rendered}</title>
+        <meta name="title" content={post?.title.rendered} />
+        <meta name="description" content="" />
+        <meta property="og:title" content={post?.title.rendered} />
+        <meta property="og:description" content="" />
+        <meta property="og:image" content={post?.og_image?.url} />
         <meta
           property="og:url"
           content={`https://dailybuzzs.vercel.app/${slug}`}
@@ -26,11 +38,10 @@ export default function Post({ slug }) {
 export async function getStaticProps({ params }) {
   const slug = params.slug;
   const res = await fetch(`https://dailybuzzs.com/wp-json/wp/v2/posts?${slug}`);
-  const posts = await res.json();
+  const post = await res.json();
   return {
     props: {
-      slug,
-      posts,
+      post,
     },
     revalidate: 60,
   };
