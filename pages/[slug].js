@@ -14,23 +14,23 @@ export default function Post({ post }) {
   // const URL = `${origin}`;
 
   useEffect(() => {
-    if (post?.slug) {
-      router.push(`https://dailybuzzs.com/${post?.slug}`);
+    if (post[0]?.slug) {
+      router.push(`https://dailybuzzs.com/${post[0]?.slug}`);
     }
-  }, [post?.slug]);
+  }, [post[0]?.slug]);
 
   return (
     <div>
       <Head>
-        <title>{post?.title?.rendered}</title>
-        <meta name="title" content={post?.title?.rendered} />
+        <title>{post[0]?.title?.rendered}</title>
+        <meta name="title" content={post[0]?.title?.rendered} />
         <meta name="description" content="" />
-        <meta property="og:title" content={post?.title?.rendered} />
+        <meta property="og:title" content={post[0]?.title?.rendered} />
         <meta property="og:description" content="" />
-        <meta property="og:image" content={post?.og_image?.url} />
+        <meta property="og:image" content={post[0]?.og_image?.url} />
         <meta
           property="og:url"
-          content={`https://dailybuzzs.vercel.app/${post?.slug}`}
+          content={`https://dailybuzzs.vercel.app/${post[0]?.slug}`}
         />
       </Head>
     </div>
@@ -39,7 +39,10 @@ export default function Post({ post }) {
 
 export async function getStaticProps({ params }) {
   const slug = params.slug;
-  const res = await fetch(`https://dailybuzzs.com/wp-json/wp/v2/posts?${slug}`);
+  const res = await fetch(
+    `https://dailybuzzs.com/wp-json/wp/v2/posts?slug=${slug}`
+  );
+  console.log(res, "restt");
   const post = await res.json();
   return {
     props: {
