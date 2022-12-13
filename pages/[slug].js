@@ -25,9 +25,15 @@ export default function Post({ post }) {
         <title>{post[0]?.title?.rendered}</title>
         <meta name="title" content={post[0]?.title?.rendered} />
         <meta name="description" content="" />
-        <meta property="og:title" content={post[0]?.title?.rendered} />
+        <meta
+          property="og:title"
+          content={post[0]?.yoast_head_json?.og_title}
+        />
         <meta property="og:description" content="" />
-        <meta property="og:image" content={post[0]?.og_image?.url} />
+        <meta
+          property="og:image"
+          content={post[0]?.yoast_head_json?.og_image?.url}
+        />
         <meta
           property="og:url"
           content={`https://dailybuzzs.vercel.app/${post[0]?.slug}`}
