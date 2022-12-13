@@ -14,21 +14,23 @@ export default function Post({ post }) {
   // const URL = `${origin}`;
 
   useEffect(() => {
-    router.push(`https://dailybuzzs.com/${post?.slug}`);
+    if (post?.slug) {
+      router.push(`https://dailybuzzs.com/${post?.slug}`);
+    }
   }, [post?.slug]);
 
   return (
     <div>
       <Head>
-        <title>{post?.title.rendered}</title>
-        <meta name="title" content={post?.title.rendered} />
+        <title>{post?.title?.rendered}</title>
+        <meta name="title" content={post?.title?.rendered} />
         <meta name="description" content="" />
-        <meta property="og:title" content={post?.title.rendered} />
+        <meta property="og:title" content={post?.title?.rendered} />
         <meta property="og:description" content="" />
         <meta property="og:image" content={post?.og_image?.url} />
         <meta
           property="og:url"
-          content={`https://dailybuzzs.vercel.app/${slug}`}
+          content={`https://dailybuzzs.vercel.app/${post?.slug}`}
         />
       </Head>
     </div>
