@@ -32,7 +32,7 @@ export default function Post({ post }) {
         <meta property="og:description" content="" />
         <meta
           property="og:image"
-          content={post[0]?.yoast_head_json?.og_image?.url}
+          content={post[0]?.yoast_head_json?.og_image[0]?.url}
         />
         <meta
           property="og:url"
