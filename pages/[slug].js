@@ -1,5 +1,21 @@
-export default function Home() {
-  return <div></div>;
+import Head from "next/head";
+import { useRouter } from "next/router";
+
+export default function Post() {
+  const { asPath } = useRouter();
+  const origin =
+    typeof window !== "undefined" && window.location.origin
+      ? window.location.origin
+      : "";
+
+  const URL = `${origin}`;
+  return (
+    <div>
+      <Head>
+        <meta property="og:url" content={`${URL}/${asPath}`} />
+      </Head>
+    </div>
+  );
 }
 
 export async function getStaticProps({ params }) {
