@@ -1,18 +1,23 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
-export default function Post() {
-  const { asPath } = useRouter();
-  const origin =
-    typeof window !== "undefined" && window.location.origin
-      ? window.location.origin
-      : "";
+export default function Post({ slug }) {
+  // const { asPath } = useRouter();
+  // const origin =
+  //   typeof window !== "undefined" && window.location.origin
+  //     ? window.location.origin
+  //     : "";
 
-  const URL = `${origin}`;
+  // const URL = `${origin}`;
+
   return (
     <div>
       <Head>
-        <meta property="og:url" content={`${URL}/${asPath}`} />
+        {/* <meta property="og:url" content={`${URL}/${asPath}`} /> */}
+        <meta
+          property="og:url"
+          content={`https://dailybuzzs.vercel.app/${slug}`}
+        />
       </Head>
     </div>
   );
@@ -24,6 +29,7 @@ export async function getStaticProps({ params }) {
   const posts = await res.json();
   return {
     props: {
+      slug,
       posts,
     },
     revalidate: 60,
