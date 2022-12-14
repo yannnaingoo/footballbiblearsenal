@@ -36,7 +36,32 @@ export default function Post({ post }) {
   );
 }
 
-export async function getStaticProps({ params }) {
+// export async function getStaticProps({ params }) {
+//   const slug = params.slug;
+//   const res = await axios.get(
+//     `https://dailybuzzs.com/wp-json/wp/v2/posts?slug=${slug}`
+//   );
+//   const post = res?.data;
+//   return {
+//     props: {
+//       post,
+//     },
+//     revalidate: 1,
+//   };
+// }
+
+// export async function getStaticPaths() {
+//   const res = await axios.get(
+//     "https://dailybuzzs.com/wp-json/wp/v2/posts?_embed&per_page=100"
+//   );
+//   const posts = res?.data;
+//   const paths = posts.map((post) => ({
+//     params: { slug: post.slug },
+//   }));
+//   return { paths, fallback: false };
+// }
+
+export async function getServerSideProps({ params }) {
   const slug = params.slug;
   const res = await axios.get(
     `https://dailybuzzs.com/wp-json/wp/v2/posts?slug=${slug}`
@@ -46,17 +71,5 @@ export async function getStaticProps({ params }) {
     props: {
       post,
     },
-    revalidate: 1,
   };
-}
-
-export async function getStaticPaths() {
-  const res = await axios.get(
-    "https://dailybuzzs.com/wp-json/wp/v2/posts?_embed&per_page=100"
-  );
-  const posts = res?.data;
-  const paths = posts.map((post) => ({
-    params: { slug: post.slug },
-  }));
-  return { paths, fallback: false };
 }
