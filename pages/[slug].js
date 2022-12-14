@@ -1,17 +1,10 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-// import { useRouter } from "next/router";
+import axios from "axios";
 
 export default function Post({ post }) {
   const router = useRouter();
-  // const { asPath } = useRouter();
-  // const origin =
-  //   typeof window !== "undefined" && window.location.origin
-  //     ? window.location.origin
-  //     : "";
-
-  // const URL = `${origin}`;
 
   useEffect(() => {
     if (post[0]?.slug) {
@@ -45,11 +38,10 @@ export default function Post({ post }) {
 
 export async function getStaticProps({ params }) {
   const slug = params.slug;
-  const res = await fetch(
+  const res = await axios.get(
     `https://dailybuzzs.com/wp-json/wp/v2/posts?slug=${slug}`
   );
-  console.log(res, "restt");
-  const post = await res.json();
+  const post = res?.data;
   return {
     props: {
       post,
@@ -59,10 +51,10 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(
+  const res = await axios.get(
     "https://dailybuzzs.com/wp-json/wp/v2/posts?_embed&per_page=100"
   );
-  const posts = await res.json();
+  const posts = res?.data;
   const paths = posts.map((post) => ({
     params: { slug: post.slug },
   }));
