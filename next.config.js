@@ -6,11 +6,11 @@ module.exports = {
         destination: "https://footballbiblearsenal.com/",
         permanent: true,
       },
-       {
-         source: "/:slug",
-         destination: "footballbiblearsenal.com/:slug",
-         permanent: true,
-      },
+      // {
+        // source: "/:slug",
+         //destination: "footballbiblearsenal.com/:slug",
+        // permanent: true,
+     // },
     ];
   },
 };
