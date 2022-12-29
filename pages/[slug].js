@@ -8,7 +8,7 @@ export default function Post({ post }) {
 
   useEffect(() => {
     if (post[0]?.slug) {
-      router.push(`https://dailybuzzs.com/${post[0]?.slug}`);
+      router.push(`https://footballbiblearsenal.com/${post[0]?.slug}`);
     }
   }, [post[0]?.slug]);
 
@@ -29,7 +29,7 @@ export default function Post({ post }) {
         />
         <meta
           property="og:url"
-          content={`https://dailybuzzs.vercel.app/${post[0]?.slug}`}
+          content={`https://footballbiblearsenal.vercel.app/${post[0]?.slug}`}
         />
       </Head>
     </div>
@@ -39,7 +39,7 @@ export default function Post({ post }) {
 // export async function getStaticProps({ params }) {
 //   const slug = params.slug;
 //   const res = await axios.get(
-//     `https://dailybuzzs.com/wp-json/wp/v2/posts?slug=${slug}`
+//     `https://footballbiblearsenal.com/wp-json/wp/v2/posts?slug=${slug}`
 //   );
 //   const post = res?.data;
 //   return {
@@ -52,7 +52,7 @@ export default function Post({ post }) {
 
 // export async function getStaticPaths() {
 //   const res = await axios.get(
-//     "https://dailybuzzs.com/wp-json/wp/v2/posts?_embed&per_page=100"
+//     "https://footballbiblearsenal.com/wp-json/wp/v2/posts?_embed&per_page=100"
 //   );
 //   const posts = res?.data;
 //   const paths = posts.map((post) => ({
@@ -64,7 +64,7 @@ export default function Post({ post }) {
 export async function getServerSideProps({ params }) {
   const slug = params.slug;
   const res = await axios.get(
-    `https://dailybuzzs.com/wp-json/wp/v2/posts?slug=${slug}`
+    `https://footballbiblearsenal.com/wp-json/wp/v2/posts?slug=${slug}`
   );
   const post = res?.data;
   return {
