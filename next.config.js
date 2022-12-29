@@ -3,14 +3,14 @@ module.exports = {
     return [
       {
         source: "/",
-        destination: "https://dailybuzzs.com/",
+        destination: "https://footballbiblearsenal.com/",
         permanent: true,
       },
-      // {
-      //   source: "/:slug",
-      //   destination: "https://dailybuzzs.com/:slug",
-      //   permanent: true,
-      // },
+       {
+         source: "/:slug",
+         destination: "footballbiblearsenal.com/:slug",
+         permanent: true,
+      },
     ];
   },
 };
